@@ -1,7 +1,7 @@
 package com.goeuro.util;
 
 
-import com.goeuro.domain.StationRouteCache;
+import com.goeuro.model.StationRouteCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

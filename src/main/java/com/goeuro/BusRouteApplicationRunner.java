@@ -1,6 +1,6 @@
 package com.goeuro;
 
-import com.goeuro.domain.StationRouteCache;
+import com.goeuro.model.StationRouteCache;
 import com.goeuro.util.StationRouteCacheBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
