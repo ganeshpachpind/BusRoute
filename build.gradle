@@ -21,6 +21,10 @@ repositories {
 	mavenCentral()
 }
 
+// Hack for now as gradle plugin issue - https://github.com/spring-projects/spring-boot/issues/1176
+bootRun {
+	systemProperties = System.properties
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')

@@ -8,7 +8,7 @@ dev_build() {
 }
 
 dev_run() {
- ./gradlew clean bootrun
+ ./gradlew bootRun -Droutes-file-path="data/example"
 }
 
 dev_smoke() {
