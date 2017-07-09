@@ -13,7 +13,7 @@ import java.io.IOException;
 public class BusRouteApplication implements CommandLineRunner {
 
     @Autowired
-    BusRouteCacheService busRouteCacheService;
+    private BusRouteCacheService busRouteCacheService;
 
     @Value("#{'${routes-file-path:data/example}'}")
     private String routesFilePath;

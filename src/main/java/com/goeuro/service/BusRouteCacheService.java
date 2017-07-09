@@ -15,7 +15,6 @@ import java.util.stream.Stream;
 @Component
 public class BusRouteCacheService {
 
-    @Autowired
     private BusRouteCache busRouteCache;
 
     public BusRouteCacheService(BusRouteCache busRouteCache) {
