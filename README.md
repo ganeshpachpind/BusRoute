@@ -18,6 +18,8 @@ A cache data structure Map <Integer,List< Integer >> where Key is station Id and
 - Response to query will be fast , in terms of time complexity   
     O(1) - search first station   
     O(1) - search second station  
-    O(mLogm + nLogn) - Calculating disjoint of route   
-    
- 
+    O(mLogm + nLogn) - Calculating disjoint of route 
+      
+# Test Report 
+
+![alt text](https://raw.githubusercontent.com/ganeshpachpind/BusRoute/master/data/test-report.png) 
