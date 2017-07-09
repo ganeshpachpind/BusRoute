@@ -1,6 +1,6 @@
 package com.goeuro;
 
-import com.goeuro.util.StationRouteCacheBuilder;
+import com.goeuro.service.BusRouteCacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -13,7 +13,7 @@ import java.io.IOException;
 public class BusRouteApplication implements CommandLineRunner {
 
     @Autowired
-    StationRouteCacheBuilder stationRouteCacheBuilder;
+    BusRouteCacheService busRouteCacheService;
 
     @Value("#{'${routes-file-path:data/example}'}")
     private String routesFilePath;
@@ -24,6 +24,6 @@ public class BusRouteApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws IOException {
-        stationRouteCacheBuilder.buildStationRouteCache(routesFilePath);
+        busRouteCacheService.buildStationRouteCache(routesFilePath);
     }
 }

@@ -2,7 +2,7 @@ package com.goeuro.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goeuro.model.DirectBusRouteResponse;
-import com.goeuro.model.StationRouteCache;
+import com.goeuro.service.BusRouteCacheService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +28,11 @@ public class BusRouteControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private StationRouteCache stationRouteCache;
+    private BusRouteCacheService busRouteCacheService;
 
     @Test
     public void shouldGetDirectBusRouteResponse() throws Exception {
-        when(stationRouteCache.isDirectBusRouteExist(DEPARTURE_STATION_ID, ARRIVAL_STATION_ID)).thenReturn(true);
+        when(busRouteCacheService.isDirectRouteExist(DEPARTURE_STATION_ID, ARRIVAL_STATION_ID)).thenReturn(true);
         String url = String.format("/api/direct?dep_sid=%s&arr_sid=%s", DEPARTURE_STATION_ID, ARRIVAL_STATION_ID);
         ObjectMapper objectMapper = new ObjectMapper();
         DirectBusRouteResponse directBusRouteResponse = new DirectBusRouteResponse(DEPARTURE_STATION_ID, ARRIVAL_STATION_ID, true);

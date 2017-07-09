@@ -1,7 +1,7 @@
-package com.goeuro.util;
+package com.goeuro.service;
 
 
-import com.goeuro.model.StationRouteCache;
+import com.goeuro.model.BusRouteCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,23 +13,23 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
-public class StationRouteCacheBuilder {
-
+public class BusRouteCacheService {
 
     @Autowired
-    private StationRouteCache stationRouteCache;
+    private BusRouteCache busRouteCache;
 
-    public StationRouteCacheBuilder(StationRouteCache stationRouteCache) {
-        this.stationRouteCache = stationRouteCache;
+    public BusRouteCacheService(BusRouteCache busRouteCache) {
+        this.busRouteCache = busRouteCache;
     }
 
     private static final String WHITE_SPACE_SPLIT = "\\s+";
 
-    public void buildStationRouteCache(final String routesFilePath) throws IOException {
+    public BusRouteCache buildStationRouteCache(final String routesFilePath) throws IOException {
         Files.lines(Paths.get(routesFilePath))
                 .skip(1)
                 .map(this::convertToIntegers)
                 .forEach(this::updateCache);
+        return busRouteCache;
     }
 
     private void updateCache(Stream<Integer> integerStream) {
@@ -38,7 +38,7 @@ public class StationRouteCacheBuilder {
         integerList
                 .stream()
                 .skip(1)
-                .forEach(stationId -> stationRouteCache.update(stationId, routeId));
+                .forEach(stationId -> busRouteCache.addStationRoute(stationId, routeId));
 
     }
 
@@ -46,5 +46,9 @@ public class StationRouteCacheBuilder {
         return Arrays.stream(routeStations.trim().split(WHITE_SPACE_SPLIT))
                 .mapToInt(Integer::parseInt)
                 .boxed();
+    }
+
+    public boolean isDirectRouteExist(int departureStation, int arrivalStation) {
+        return busRouteCache.isDirectBusRouteExist(departureStation, arrivalStation);
     }
 }
